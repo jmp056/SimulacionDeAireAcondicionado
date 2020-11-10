@@ -41,7 +41,6 @@
             this.EncenderButton = new System.Windows.Forms.Button();
             this.VentanaButton = new System.Windows.Forms.Button();
             this.MensajeGroupBox = new System.Windows.Forms.GroupBox();
-            this.ReposoButton = new System.Windows.Forms.Button();
             this.MensajeLabel = new System.Windows.Forms.Label();
             this.PuertaButton = new System.Windows.Forms.Button();
             this.DisminuirTimer = new System.Windows.Forms.Timer(this.components);
@@ -206,24 +205,12 @@
             this.MensajeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.MensajeGroupBox.Controls.Add(this.ReposoButton);
             this.MensajeGroupBox.Controls.Add(this.MensajeLabel);
             this.MensajeGroupBox.Location = new System.Drawing.Point(12, 297);
             this.MensajeGroupBox.Name = "MensajeGroupBox";
             this.MensajeGroupBox.Size = new System.Drawing.Size(344, 61);
             this.MensajeGroupBox.TabIndex = 8;
             this.MensajeGroupBox.TabStop = false;
-            // 
-            // ReposoButton
-            // 
-            this.ReposoButton.Image = global::SimulacionDeAireAcondicionado.Properties.Resources.Pausa;
-            this.ReposoButton.Location = new System.Drawing.Point(313, 30);
-            this.ReposoButton.Name = "ReposoButton";
-            this.ReposoButton.Size = new System.Drawing.Size(25, 25);
-            this.ReposoButton.TabIndex = 2;
-            this.ReposoButton.UseVisualStyleBackColor = true;
-            this.ReposoButton.Visible = false;
-            this.ReposoButton.Click += new System.EventHandler(this.ReposoButton_Click);
             // 
             // MensajeLabel
             // 
@@ -295,7 +282,6 @@
         private System.Windows.Forms.Button VentanaButton;
         private System.Windows.Forms.GroupBox MensajeGroupBox;
         private System.Windows.Forms.Label MensajeLabel;
-        private System.Windows.Forms.Button ReposoButton;
         private System.Windows.Forms.Label TempActualLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
