@@ -176,6 +176,64 @@ namespace SimulacionDeAireAcondicionado
             TempActualLabel.Text = Convert.ToString(Convert.ToSingle(TempActualLabel.Text) + 1);
         }
 
+
+        private void Proceso_AireApagado()    // Procesos que se ejecutan cuando se apaga el aire 
+        {
+            
+
+            AumentarTimer.Interval = 3000;
+
+            if (puerta == false && ventana == false)
+            {
+                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+                {
+                    AumentarTimer.Enabled = false;
+
+                }
+            }
+            else if (puerta == true && ventana == true)
+            {
+                AumentarTimer.Interval = 1000;
+                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+                {
+                    AumentarTimer.Enabled = false;
+
+                }
+            }
+            else if (puerta == true)
+            {
+                AumentarTimer.Interval = 2000;
+                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+                {
+                    AumentarTimer.Enabled = false;
+
+                }
+
+            }
+            else if (ventana == true)
+            {
+                AumentarTimer.Interval = 2000;
+                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+                {
+                    AumentarTimer.Enabled = false;
+
+                }
+
+            }
+
+          
+      
+           TempActualLabel.Text = Convert.ToString(Convert.ToSingle(TempActualLabel.Text) + 1);
+            
+
+        }
+
+        public void AireApagado()    //Funcion para cuando se apague el aire
+        {
+            AumentarTimer.Enabled = true;
+        }
+
+
         public void Reposo() // Funcion que trabaja cuando el aire se encuentra en reposo
         {
             MensajeLabel.Text = "¡El aire acondicionado se encuentra en reposo!";
@@ -184,7 +242,15 @@ namespace SimulacionDeAireAcondicionado
         
         private void AumentarTimer_Tick(object sender, EventArgs e)
         {
-            ProcesosAireEnReposo();
+            if (aire == true)
+            {
+                ProcesosAireEnReposo();
+            }
+            else
+            {
+                Proceso_AireApagado();
+            }
+            
         }
         
         private void EncenderButton_Click(object sender, EventArgs e)
@@ -204,9 +270,10 @@ namespace SimulacionDeAireAcondicionado
                 DisminuirTimer.Enabled = false;
                 AumentarTimer.Enabled = false;
                 MensajeLabel.Text = string.Empty;
-                TempActualLabel.Text = Convert.ToString(TempAmbienteNumericUpDown.Value);
-            }
+                //TempActualLabel.Text = Convert.ToString(TempAmbienteNumericUpDown.Value);
+                AireApagado();
 
+            }
         }
 
 
