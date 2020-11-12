@@ -27,11 +27,10 @@ namespace SimulacionDeAireAcondicionado
                 PuertaButton.Text = "Abrir puerta";
             }
 
-            if(aire == true && reposo == false)
+            if (aire == true && reposo == false)
                 ProcesosAireEncendido();
-            else if(aire == true && reposo == true)
+            else if (aire == true && reposo == true)
                 ProcesosAireEnReposo();
-
 
         }
 
@@ -58,35 +57,20 @@ namespace SimulacionDeAireAcondicionado
                 ProcesosAireEnReposo();
         }
 
-
-
-
-        //----------------------------------------------------------------------------------------------------
-        // -------
-        //--------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-        private void TempAmbienteNumericUpDown_ValueChanged(object sender, EventArgs e) 
+        private void TempAmbienteNumericUpDown_ValueChanged(object sender, EventArgs e)
         { //Este evento actualiza la temperatura del label de la temperatura actual cuando se cambia por las flechas el valor del NumericUpDown de la temperatura del ambiente
             TempActualLabel.Text = Convert.ToString(TempAmbienteNumericUpDown.Value);
         }
-        
+
         private void TempAmbienteNumericUpDown_KeyPress(object sender, KeyPressEventArgs e)
         {//Este evento actualiza el valor del label de temperatura actual al precionar una tecla en el numericUodown de la temperatura del ambiente
             TempActualLabel.Text = Convert.ToString(TempAmbienteNumericUpDown.Value);
         }
-        
+
         private void DisminuirTimer_Tick(object sender, EventArgs e) // Timer encargado de disminuir la temperatura
         {
-            ProcesosAireEncendido();        
+            ProcesosAireEncendido();
         }
-
 
         public void ProcesosAireEncendido() // Procesos que reliza el aire si esta encendido
         {
@@ -142,9 +126,9 @@ namespace SimulacionDeAireAcondicionado
                 {
                     AumentarTimer.Enabled = false;
                     Encender();
-                }                    
+                }
             }
-            else if(puerta == true && ventana == true)
+            else if (puerta == true && ventana == true)
             {
                 AumentarTimer.Interval = 1000;
                 if (Convert.ToInt32(TempActualLabel.Text) >= TempDeseadaNumericUpDown.Value + 3)
@@ -153,7 +137,7 @@ namespace SimulacionDeAireAcondicionado
                     Encender();
                 }
             }
-            else if(puerta == true)
+            else if (puerta == true)
             {
                 AumentarTimer.Interval = 2000;
                 if (Convert.ToInt32(TempActualLabel.Text) >= TempDeseadaNumericUpDown.Value + 3)
@@ -163,7 +147,7 @@ namespace SimulacionDeAireAcondicionado
                 }
                 MensajeLabel.Text = "El aire acondicionado se encuentra en reposo\ny la ventana se encuentra abierta,\nel cuarto se calentara mas rapido!";
             }
-            else if(ventana == true)
+            else if (ventana == true)
             {
                 AumentarTimer.Interval = 2000;
                 if (Convert.ToInt32(TempActualLabel.Text) >= TempDeseadaNumericUpDown.Value + 3)
@@ -176,61 +160,79 @@ namespace SimulacionDeAireAcondicionado
             TempActualLabel.Text = Convert.ToString(Convert.ToSingle(TempActualLabel.Text) + 1);
         }
 
+        public void ApagarAire()
+        {
+            ApagadoTimer.Enabled = true;
+            
+        }
 
         private void Proceso_AireApagado()    // Procesos que se ejecutan cuando se apaga el aire 
         {
-            
-
-            AumentarTimer.Interval = 3000;
-
-            if (puerta == false && ventana == false)
+            if (puerta == true && ventana == true)
             {
-                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
-                {
-                    AumentarTimer.Enabled = false;
-
-                }
+                ApagadoTimer.Interval = 1000;
             }
-            else if (puerta == true && ventana == true)
+            else if (puerta == true || ventana == true)
             {
-                AumentarTimer.Interval = 1000;
-                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
-                {
-                    AumentarTimer.Enabled = false;
-
-                }
+                ApagadoTimer.Interval = 2000;
             }
-            else if (puerta == true)
+            else
             {
-                AumentarTimer.Interval = 2000;
-                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
-                {
-                    AumentarTimer.Enabled = false;
-
-                }
-
+                ApagadoTimer.Interval = 3000;
             }
-            else if (ventana == true)
-            {
-                AumentarTimer.Interval = 2000;
-                if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
-                {
-                    AumentarTimer.Enabled = false;
 
-                }
+            TempActualLabel.Text = Convert.ToString(Convert.ToInt32(TempActualLabel.Text) + 1);
 
-            }
+            decimal ta = TempAmbienteNumericUpDown.Value;
+            if (TempAmbienteNumericUpDown.Value <= Convert.ToInt32(TempActualLabel.Text))
+                ApagadoTimer.Enabled = false;
+
+
+           // AumentarTimer.Interval = 3000;
+
+           // if (puerta == false && ventana == false)
+           // {
+           //     if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+           //     {
+           //         AumentarTimer.Enabled = false;
+
+           //     }
+           // }
+           // else if (puerta == true && ventana == true)
+           // {
+           //     AumentarTimer.Interval = 1000;
+           //     if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+           //     {
+           //         AumentarTimer.Enabled = false;
+
+           //     }
+           // }
+           // else if (puerta == true)
+           // {
+           //     AumentarTimer.Interval = 2000;
+           //     if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+           //     {
+           //         AumentarTimer.Enabled = false;
+
+           //     }
+
+           // }
+           // else if (ventana == true)
+           // {
+           //     AumentarTimer.Interval = 2000;
+           //     if (Convert.ToInt32(TempActualLabel.Text) <= TempAmbienteNumericUpDown.Value + 3)
+           //     {
+           //         AumentarTimer.Enabled = false;
+
+           //     }
+
+           // }
 
           
       
-           TempActualLabel.Text = Convert.ToString(Convert.ToSingle(TempActualLabel.Text) + 1);
+           //TempActualLabel.Text = Convert.ToString(Convert.ToSingle(TempActualLabel.Text) + 1);
             
 
-        }
-
-        public void AireApagado()    //Funcion para cuando se apague el aire
-        {
-            AumentarTimer.Enabled = true;
         }
 
 
@@ -239,7 +241,12 @@ namespace SimulacionDeAireAcondicionado
             MensajeLabel.Text = "¡El aire acondicionado se encuentra en reposo!";
             AumentarTimer.Enabled = true;
         }
-        
+
+        private void ApagadoTimer_Tick(object sender, EventArgs e)
+        {
+            Proceso_AireApagado();
+        }
+
         private void AumentarTimer_Tick(object sender, EventArgs e)
         {
             if (aire == true)
@@ -260,6 +267,7 @@ namespace SimulacionDeAireAcondicionado
                 aire = true;
                 EncenderButton.Image = SimulacionDeAireAcondicionado.Properties.Resources.Encendido;
                 TempAmbienteNumericUpDown.Enabled = false;
+                TempDeseadaNumericUpDown.Enabled = false;
                 Encender();
             }
             else
@@ -267,12 +275,11 @@ namespace SimulacionDeAireAcondicionado
                 aire = false;
                 EncenderButton.Image = SimulacionDeAireAcondicionado.Properties.Resources.Apagado;
                 TempAmbienteNumericUpDown.Enabled = true;
+                TempDeseadaNumericUpDown.Enabled = true;
                 DisminuirTimer.Enabled = false;
                 AumentarTimer.Enabled = false;
                 MensajeLabel.Text = string.Empty;
-                //TempActualLabel.Text = Convert.ToString(TempAmbienteNumericUpDown.Value);
-                AireApagado();
-
+                ApagarAire();
             }
         }
 

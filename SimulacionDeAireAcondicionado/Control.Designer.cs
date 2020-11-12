@@ -45,6 +45,7 @@
             this.PuertaButton = new System.Windows.Forms.Button();
             this.DisminuirTimer = new System.Windows.Forms.Timer(this.components);
             this.AumentarTimer = new System.Windows.Forms.Timer(this.components);
+            this.ApagadoTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.TempDeseadaNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TempAmbienteNumericUpDown)).BeginInit();
             this.ControlGroupBox.SuspendLayout();
@@ -87,7 +88,7 @@
             0});
             this.TempDeseadaNumericUpDown.Name = "TempDeseadaNumericUpDown";
             this.TempDeseadaNumericUpDown.Size = new System.Drawing.Size(82, 22);
-            this.TempDeseadaNumericUpDown.TabIndex = 2;
+            this.TempDeseadaNumericUpDown.TabIndex = 20;
             this.TempDeseadaNumericUpDown.Value = new decimal(new int[] {
             16,
             0,
@@ -110,7 +111,7 @@
             0});
             this.TempAmbienteNumericUpDown.Name = "TempAmbienteNumericUpDown";
             this.TempAmbienteNumericUpDown.Size = new System.Drawing.Size(82, 22);
-            this.TempAmbienteNumericUpDown.TabIndex = 3;
+            this.TempAmbienteNumericUpDown.TabIndex = 10;
             this.TempAmbienteNumericUpDown.Value = new decimal(new int[] {
             16,
             0,
@@ -183,7 +184,7 @@
             this.EncenderButton.Location = new System.Drawing.Point(33, 97);
             this.EncenderButton.Name = "EncenderButton";
             this.EncenderButton.Size = new System.Drawing.Size(85, 50);
-            this.EncenderButton.TabIndex = 4;
+            this.EncenderButton.TabIndex = 30;
             this.EncenderButton.UseVisualStyleBackColor = true;
             this.EncenderButton.Click += new System.EventHandler(this.EncenderButton_Click);
             // 
@@ -194,7 +195,7 @@
             this.VentanaButton.Location = new System.Drawing.Point(211, 185);
             this.VentanaButton.Name = "VentanaButton";
             this.VentanaButton.Size = new System.Drawing.Size(140, 100);
-            this.VentanaButton.TabIndex = 7;
+            this.VentanaButton.TabIndex = 50;
             this.VentanaButton.Text = "Abrir ventana";
             this.VentanaButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.VentanaButton.UseVisualStyleBackColor = true;
@@ -232,7 +233,7 @@
             this.PuertaButton.Location = new System.Drawing.Point(17, 185);
             this.PuertaButton.Name = "PuertaButton";
             this.PuertaButton.Size = new System.Drawing.Size(140, 100);
-            this.PuertaButton.TabIndex = 5;
+            this.PuertaButton.TabIndex = 40;
             this.PuertaButton.Text = "Abrir puerta";
             this.PuertaButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.PuertaButton.UseVisualStyleBackColor = true;
@@ -247,6 +248,10 @@
             // 
             this.AumentarTimer.Interval = 6000;
             this.AumentarTimer.Tick += new System.EventHandler(this.AumentarTimer_Tick);
+            // 
+            // ApagadoTimer
+            // 
+            this.ApagadoTimer.Tick += new System.EventHandler(this.ApagadoTimer_Tick);
             // 
             // Control
             // 
@@ -288,6 +293,7 @@
         private System.Windows.Forms.Timer DisminuirTimer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer AumentarTimer;
+        private System.Windows.Forms.Timer ApagadoTimer;
     }
 }
 
